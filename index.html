@@ -277,13 +277,36 @@
         <div class="footer-logo">黄埔花园图书馆</div>
         <div class="footer-info">
             广州黄埔区黄埔花园图书馆<br>
-            开放时间：周一-周日09:00-18:00（逢周三闭馆）<br>
-            地址：广州市黄埔区丰乐南路432号党群服务中心2层
+            开放时间：周二至周日 9:00-21:00
         </div>
     </footer>
 
-    <script src="events.js"></script>
     <script>
+        // 活动列表数据（直接内嵌，避免外部文件加载问题）
+        const EVENT_LIST = [
+            {
+                id: "plant-kingdom-2026",
+                title: "🎬纪录片分享《植物王国》",
+                date: "2026.4.23",
+                tag: "公益放映",
+                status: "报名中"
+            },
+            {
+                id: "print-photo-2026",
+                title: "✂️转印拓印纸质相框",
+                date: "2026.4.25",
+                tag: "创意手工",
+                status: "报名中"
+            },
+            {
+                id: "scented-candle-2026",
+                title: "🌺香薰蜡牌制作",
+                date: "2026.4.26",
+                tag: "创意手工",
+                status: "报名中"
+            }
+        ];
+
         function renderEventsList() {
             const listContainer = document.getElementById('eventsList');
             
@@ -320,7 +343,12 @@
             listContainer.innerHTML = html;
         }
 
-        document.addEventListener('DOMContentLoaded', renderEventsList);
+        // 页面加载完成后渲染
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', renderEventsList);
+        } else {
+            renderEventsList();
+        }
     </script>
 </body>
 </html>
