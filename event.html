@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">黄埔花园图书馆 · 活动报名</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-cream: #fdfbf7;
+            --bg-warm: #f8f5f0;
+            --bg-paper: #f5f2ed;
+            --text-primary: #2c2620;
+            --text-secondary: #5a524a;
+            --text-muted: #8a8278;
+            --accent-terracotta: #c17f59;
+            --accent-olive: #7a8b6e;
+            --accent-gold: #c9a227;
+            --border-warm: #e8e2d9;
+            --shadow-soft: 0 4px 24px rgba(44, 38, 32, 0.06);
+            --shadow-medium: 0 8px 40px rgba(44, 38, 32, 0.1);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, sans-serif;
+            background: var(--bg-cream);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s var(--ease-out) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 导航 */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 24px;
+            background: linear-gradient(to bottom, rgba(253, 251, 247, 0.95), transparent);
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--accent-olive);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        /* 主视觉 */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 100px 48px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 64px;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--bg-paper);
+            border: 1px solid var(--border-warm);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--accent-terracotta);
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .meta-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-warm);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out);
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent-terracotta);
+            color: white;
+            box-shadow: 0 4px 16px rgba(193, 127, 89, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #b06f49;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(193, 127, 89, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-paper);
+            color: var(--text-primary);
+            border: 1px solid var(--border-warm);
+        }
+
+        .btn-secondary:hover { background: var(--bg-warm); }
+
+        /* 右侧视觉 */
+        .hero-visual { position: relative; }
+
+        .image-frame {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            background: linear-gradient(135deg, #7a8b6e 0%, #5a7a4a 100%);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 20px 24px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .card-spots {
+            bottom: -20px;
+            left: -20px;
+        }
+
+        .card-spots .number {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-terracotta);
+        }
+
+        .card-spots .label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* 活动亮点 */
+        .highlights {
+            padding: 100px 48px;
+            background: var(--bg-warm);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--bg-paper);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--accent-olive);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .highlight-card {
+            background: white;
+            padding: 32px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s var(--ease-out);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .highlight-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--bg-cream);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .highlight-card h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .highlight-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        /* 时间轴 */
+        .schedule { padding: 100px 48px; }
+
+        .schedule-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-warm);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 4px;
+            width: 14px;
+            height: 14px;
+            background: var(--accent-olive);
+            border-radius: 50%;
+            border: 3px solid var(--bg-cream);
+            box-shadow: 0 0 0 2px var(--accent-olive);
+        }
+
+        .timeline-time {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-terracotta);
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        /* 报名表单 */
+        .registration {
+            padding: 100px 48px;
+            background: var(--bg-cream);
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 48px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-header h2 { margin-bottom: 8px; }
+        .form-header p { color: var(--text-secondary); }
+
+        .tencent-form-wrapper {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-warm);
+            min-height: 500px;
+        }
+
+        .tencent-form-wrapper iframe {
+            display: block;
+            border: none;
+            width: 100%;
+            min-height: 600px;
+        }
+
+        .form-fallback {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .form-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 24px;
+            padding: 16px;
+            background: var(--bg-warm);
+            border-radius: 12px;
+        }
+
+        /* 页脚 */
+        .footer {
+            padding: 48px;
+            background: var(--text-primary);
+            color: var(--bg-cream);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-info {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* 错误页面 */
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 48px;
+        }
+
+        .error-page h2 {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .error-page p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 48px;
+                padding: 120px 24px 60px;
+            }
+            .subtitle { margin-left: auto; margin-right: auto; }
+            .meta-info { justify-content: center; }
+            .cta-group { justify-content: center; }
+            .hero-visual { order: -1; }
+            .floating-card { display: none; }
+            .highlights, .schedule, .registration { padding: 60px 24px; }
+            .form-container { padding: 32px 24px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航 -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="/" class="logo">
+                <span class="logo-icon">🌿</span>
+                黄埔花园图书馆
+            </a>
+        </div>
+    </nav>
+
+    <!-- 主视觉 -->
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <span class="tag" id="eventTag">公益放映</span>
+            <h1 id="eventTitle">纪录片分享<br>《植物王国》</h1>
+            <p class="subtitle" id="eventSubtitle">活动简介加载中...</p>
+            
+            <div class="meta-info" id="eventMeta">
+                <!-- 动态生成 -->
+            </div>
+
+            <div class="cta-group">
+                <a href="#register" class="btn btn-primary">
+                    立即报名
+                    <span>→</span>
+                </a>
+                <a href="#highlights" class="btn btn-secondary">了解活动详情</a>
+            </div>
+        </div>
+
+        <div class="hero-visual fade-in">
+            <div class="image-frame">
+                <div style="text-align: center; color: white; padding: 40px;">
+                    <div style="font-size: 120px; margin-bottom: 20px;">🌿</div>
+                    <div style="font-family: 'Noto Serif SC', serif; font-size: 24px; opacity: 0.9;">探索自然的奥秘</div>
+                </div>
+            </div>
+            <div class="floating-card card-spots">
+                <div class="number" id="eventType">免费</div>
+                <div class="label" id="eventTypeLabel">公益放映</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 活动亮点 -->
+    <section class="highlights" id="highlights">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">活动亮点</span>
+                <h2 id="highlightsTitle">探索自然的隐秘奇迹</h2>
+                <p class="section-desc" id="highlightsDesc">BBC高清纪录片，带你走进不可思议的植物世界</p>
+            </div>
+
+            <div class="highlights-grid" id="highlightsGrid">
+                <!-- 动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 活动流程 -->
+    <section class="schedule">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">活动流程</span>
+                <h2 id="scheduleTitle">活动流程</h2>
+                <p class="section-desc" id="scheduleDesc">精彩环节，不容错过</p>
+            </div>
+
+            <div class="schedule-content">
+                <div class="timeline" id="timeline">
+                    <!-- 动态生成 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 报名表单 -->
+    <section class="registration" id="register">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">立即报名</span>
+                <h2>活动报名</h2>
+                <p class="section-desc">名额有限，请尽早报名锁定席位</p>
+            </div>
+
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>填写报名信息</h2>
+                    <p id="formEventInfo">活动信息加载中...</p>
+                </div>
+
+                <!-- 腾讯文档表单嵌入 -->
+                <div class="tencent-form-wrapper">
+                    <iframe 
+                        id="tencentForm"
+                        src=""
+                        frameborder="0"
+                        width="100%"
+                        height="600"
+                        allowfullscreen>
+                    </iframe>
+                    <div class="form-fallback" id="formFallback">
+                        <p style="margin-bottom: 20px; color: var(--text-secondary);">
+                            如果表单无法显示，请点击下方按钮跳转填写
+                        </p>
+                        <a id="formFallbackLink" href="#" target="_blank" class="btn btn-primary">
+                            前往报名表单
+                            <span>→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="form-note">
+                    💡 <strong>温馨提示：</strong>请确保填写的联系方式准确，以便活动前发送提醒通知。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-logo">黄埔花园图书馆</div>
+        <div class="footer-info">
+            广州黄埔区黄埔花园图书馆<br>
+            开放时间：周二至周日 9:00-21:00
+        </div>
+    </footer>
+
+    <script src="events.js"></script>
+    <script>
+        // 获取 URL 参数中的活动ID
+        function getEventId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const pathMatch = window.location.pathname.match(/\/event\/(.+)/);
+            return urlParams.get('event') || (pathMatch && pathMatch[1]) || DEFAULT_EVENT_ID;
+        }
+
+        // 渲染活动页面
+        function renderEvent() {
+            const eventId = getEventId();
+            const event = EVENTS[eventId];
+
+            if (!event) {
+                showError('活动不存在', '抱歉，您访问的活动不存在或已结束。');
+                return;
+            }
+
+            // 页面标题
+            document.title = `黄埔花园图书馆 · ${event.title}`;
+
+            // 主视觉区
+            document.getElementById('eventTag').textContent = event.tag;
+            document.getElementById('eventTitle').innerHTML = event.title.replace('《', '<br>《');
+            document.getElementById('eventSubtitle').textContent = event.subtitle;
+
+            // 元信息
+            const metaHtml = `
+                <div class="meta-item">
+                    <span class="meta-icon">📅</span>
+                    <div>
+                        <div style="font-weight: 500;">${event.date} ${event.weekday}</div>
+                        <div style="font-size: 13px; color: var(--text-muted);">${event.time}</div>
+                    </div>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">📍</span>
+                    <div>
+                        <div style="font-weight: 500;">黄埔花园图书馆</div>
+                        <div style="font-size: 13px; color: var(--text-muted);">${event.location.replace('广州黄埔区黄埔花园图书馆', '广州黄埔区')}</div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('eventMeta').innerHTML = metaHtml;
+
+            // 悬浮卡片
+            document.getElementById('eventType').textContent = event.meta.free ? '免费' : '收费';
+            document.getElementById('eventTypeLabel').textContent = event.meta.type;
+
+            // 亮点区
+            document.getElementById('highlightsTitle').textContent = '活动亮点';
+            document.getElementById('highlightsDesc').textContent = '精彩内容，等你来发现';
+            
+            const highlightsHtml = event.highlights.map(h => `
+                <div class="highlight-card">
+                    <div class="highlight-icon">${h.icon}</div>
+                    <h3>${h.title}</h3>
+                    <p>${h.desc}</p>
+                </div>
+            `).join('');
+            document.getElementById('highlightsGrid').innerHTML = highlightsHtml;
+
+            // 流程区
+            document.getElementById('scheduleTitle').textContent = '活动流程';
+            document.getElementById('scheduleDesc').textContent = `预计时长 ${event.meta.duration}`;
+
+            const timelineHtml = event.schedule.map(s => `
+                <div class="timeline-item">
+                    <div class="timeline-time">${s.time}</div>
+                    <div class="timeline-title">${s.title}</div>
+                    <div class="timeline-desc">${s.desc}</div>
+                </div>
+            `).join('');
+            document.getElementById('timeline').innerHTML = timelineHtml;
+
+            // 表单区
+            document.getElementById('formEventInfo').textContent = `${event.date} ${event.title}`;
+            document.getElementById('tencentForm').src = event.formUrl;
+            document.getElementById('formFallbackLink').href = event.formUrl;
+
+            // 表单加载检测
+            setTimeout(() => {
+                const iframe = document.getElementById('tencentForm');
+                try {
+                    if (!iframe.contentWindow || iframe.offsetHeight < 100) {
+                        showFormFallback();
+                    }
+                } catch (e) {
+                    // 跨域正常，继续显示
+                }
+            }, 3000);
+        }
+
+        function showFormFallback() {
+            document.getElementById('tencentForm').style.display = 'none';
+            document.getElementById('formFallback').style.display = 'block';
+        }
+
+        function showError(title, message) {
+            document.body.innerHTML = `
+                <div class="error-page">
+                    <h2>${title}</h2>
+                    <p>${message}</p>
+                    <a href="/" class="btn btn-primary">返回首页</a>
+                </div>
+            `;
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', renderEvent);
+
+        // 滚动动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.highlight-card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
