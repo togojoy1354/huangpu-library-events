@@ -96,9 +96,10 @@ const EVENTS = {
       free: true,           // 是否免费
       type: "纪录片",      // 活动类型
       duration: "60分钟"   // 预计时长
-  }
-},
-"print-photo-2026": {
+    }
+  },
+
+  "print-photo-2026": {
     id: "print-photo-2026",
     title: "转印拓印纸质相框",
     tag: "创意手工",
